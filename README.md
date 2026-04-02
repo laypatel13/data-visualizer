@@ -14,22 +14,27 @@ Interactive menu-based interface
 Supports any properly formatted CSV file
 
 ## Project Structure
+```
 data-visualizer/
 ├── visualizer.py       # main application
 ├── data/
 │   └── sample.csv      # sample dataset
 ├── requirements.txt    # project dependencies
 └── README.md           # project documentation
+```
 
 ## How to Run
+```bash
 git clone https://github.com/laypatel13/data-visualizer.git
 cd data-visualizer
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python3 visualizer.py
+```
 
 ## Example Output
+```
 --- Data Visualizer ---
 
 Enter CSV file path: data/sample.csv
@@ -42,6 +47,7 @@ Enter CSV file path: data/sample.csv
 Select an option (1-4): 1
 
 (Line chart window opens showing sales trend)
+```
 
 ## What I Learned
 Working with Pandas for data loading and manipulation

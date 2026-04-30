@@ -12,3 +12,10 @@ def load_data(file_path):
     except Exception as e:
         print(f"Error loading file: {e}")
         return None
+
+def plot_sales_over_time(df):
+    sns.lineplot(x="date", y="sales", data=df)
+    plt.xticks(rotation=45)
+    plt.title("Sales Over Time")
+    plt.tight_layout()
+    plt.show()

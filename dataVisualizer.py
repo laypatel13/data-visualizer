@@ -25,3 +25,8 @@ def plot_sales_by_product(df):
     sns.barplot(x="product", y="sales", data=grouped)
     plt.title("Sales by Product")
     plt.show()
+
+def plot_profit_vs_sales(df):
+    sns.scatterplot(x="sales", y="profit", data=df)
+    plt.title("Profit vs Sales")
+    plt.show()

@@ -19,3 +19,9 @@ def plot_sales_over_time(df):
     plt.title("Sales Over Time")
     plt.tight_layout()
     plt.show()
+
+def plot_sales_by_product(df):
+    grouped = df.groupby("product")["sales"].sum().reset_index()
+    sns.barplot(x="product", y="sales", data=grouped)
+    plt.title("Sales by Product")
+    plt.show()

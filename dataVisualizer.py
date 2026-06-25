@@ -1,17 +1,20 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from colorama import init, Fore, Back, Style
 
-# Enhance global look and feel
+init(autoreset=True)
+
 sns.set_theme(style="whitegrid", rc={"axes.facecolor": "#f8f9fa", "figure.facecolor": "#f8f9fa"})
 
 
 def load_data(file_path):
     try:
         df = pd.read_csv(file_path)
+        print(Fore.GREEN + Back.BLACK + Style.BRIGHT + f"Loaded {file_path} successfully!" + Style.RESET_ALL)
         return df
     except Exception as e:
-        print(f"Error loading file: {e}")
+        print(Fore.WHITE + Back.RED + f"Fatal Error: Failed to load file. {e}" + Style.RESET_ALL)
         return None
 
 def plot_sales_over_time(df):
@@ -34,7 +37,7 @@ def plot_sales_by_product(df):
     plt.xlabel("Product", fontsize=12)
     plt.ylabel("Total Sales", fontsize=12)
     for p in ax.patches:
-        ax.annotate(f'{int(p.get_height())}', (p.get_x() + p.get_width() / 2., p.get_height()), 
+        ax.annotate(f'{int(p.get_height())}', (p.get_x() + p.get_width() / 2., p.get_height()),
                     ha='center', va='center', xytext=(0, 8), textcoords='offset points', fontsize=11)
     plt.tight_layout()
     plt.show()
@@ -51,24 +54,21 @@ def plot_profit_vs_sales(df):
     plt.show()
 
 def show_menu():
-    print("\n----Data Visualizer----")
-    print("1.Sales over time")
-    print("2.Sales by product")
-    print("3.Profit vs Sales")
-    print("4.Exit")
-
+    print("\n" + Fore.BLACK + Back.WHITE + "--- Data Visualizer ---" + Style.RESET_ALL)
+    print(Fore.YELLOW + Style.NORMAL + "(1) Sales Over Time" + Style.RESET_ALL)
+    print(Fore.YELLOW + Style.NORMAL + "(2) Sales By Product" + Style.RESET_ALL)
+    print(Fore.YELLOW + Style.NORMAL + "(3) Profit vs Sales" + Style.RESET_ALL)
+    print(Fore.YELLOW + Style.NORMAL + "(4) Quit" + Style.RESET_ALL)
 
 def main():
-    file_path = input("Enter CSV file path: ")
-
+    file_path = input(Fore.CYAN + Style.BRIGHT + "Enter CSV file path: " + Style.RESET_ALL)
     df = load_data(file_path)
-
     if df is None:
         return
 
     while True:
         show_menu()
-        choice = input("Select an option (1-4): ")
+        choice = input("\n" + Fore.CYAN + Style.BRIGHT + "Enter Your Choice: " + Style.RESET_ALL)
 
         if choice == "1":
             plot_sales_over_time(df)
@@ -77,11 +77,10 @@ def main():
         elif choice == "3":
             plot_profit_vs_sales(df)
         elif choice == "4":
-            print("Exiting...")
+            print(Fore.WHITE + Style.BRIGHT + "Bye! Thanks For Using Data Visualizer!" + Style.RESET_ALL)
             break
         else:
-            print("Invalid choice. Please select 1-4.")
-
+            print(Fore.RED + Style.BRIGHT + "Invalid Choice, Try Again!" + Style.RESET_ALL)
 
 if __name__ == "__main__":
     main()
